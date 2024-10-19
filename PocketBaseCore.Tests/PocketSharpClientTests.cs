@@ -10,7 +10,7 @@ public class PocketBaseSharpClientTests
 {
     private ITestOutputHelper _outputHelper { get; }
     private IConfiguration _configuration { get; }
-    private readonly IPocketSharpClient _client;
+    private readonly IPocketBaseClient _client;
     
     public PocketBaseSharpClientTests(ITestOutputHelper outputHelper)
     {
@@ -20,7 +20,7 @@ public class PocketBaseSharpClientTests
                 .AddJsonFile("appSettings.json", optional: false, reloadOnChange: true).Build();
         
         //ie. _client = new PocketSharpClient("https://localhost:8090");
-        _client = new PocketSharpClient(_configuration["PocketBaseUri"]);
+        _client = new PocketBaseClient(_configuration["PocketBaseUri"]);
         _client.JsonOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     }
     

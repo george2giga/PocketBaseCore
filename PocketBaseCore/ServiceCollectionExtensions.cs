@@ -7,7 +7,7 @@ namespace PocketBaseCore
         //register services
         public static void RegisterPocketSharp(this IServiceCollection services)
         {
-            services.AddScoped<IPocketSharpClient, PocketSharpClient>();
+            services.AddScoped<IPocketBaseClient, PocketBaseClient>();
         }
     }
 }

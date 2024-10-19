@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 
 namespace PocketBaseCore
 {
-    public class PocketSharpClient : IPocketSharpClient
+    public class PocketBaseClient : IPocketBaseClient
     {
         private readonly HttpClient _httpClient;
         private readonly JsonSerializerOptions _jsonOptions;
@@ -18,7 +18,7 @@ namespace PocketBaseCore
 
         public JsonSerializerOptions JsonOptions => _jsonOptions;
 
-        public PocketSharpClient(string baseUrl, ILogger logger = null, HttpClient httpClient = null)
+        public PocketBaseClient(string baseUrl, ILogger logger = null, HttpClient httpClient = null)
         {
             if (string.IsNullOrEmpty(baseUrl))
                 throw new ArgumentNullException(nameof(baseUrl));

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PocketBaseCore
 {
-    public interface IPocketSharpClient
+    public interface IPocketBaseClient
     {
         /// <summary>
         /// Gets the authentication token.
