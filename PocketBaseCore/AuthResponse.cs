@@ -8,6 +8,6 @@ namespace PocketBaseCore
         public string Token { get; set; }
         
         [JsonPropertyName("record")]
-        public PocketUser User { get; set; }
+        public PocketBaseUser User { get; set; }
     }
 }

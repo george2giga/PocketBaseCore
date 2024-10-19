@@ -2,7 +2,7 @@
 
 namespace PocketBaseCore
 {
-    public class PocketUser : PocketBaseRecord
+    public class PocketBaseUser : PocketBaseRecord
     {
         [JsonPropertyName("email")]
         public string Email { get; set; }
