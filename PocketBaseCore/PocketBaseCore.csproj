@@ -10,7 +10,7 @@
         <Description>Simple .NET Standard 2.0 wrapper for the PocketBase API.</Description>
         <PackageReleaseNotes>Initial release of PocketSharp.</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <RepositoryUrl>https://github.com/YourUsername/PocketSharp</RepositoryUrl>
+        <RepositoryUrl>https://github.com/george2giga/PocketBaseCore</RepositoryUrl>
         <PackageTags>PocketBase;Client;API;C#</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
