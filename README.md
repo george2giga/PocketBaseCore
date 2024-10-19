@@ -1,6 +1,6 @@
 # PocketBaseCore
 
-A .NET Standard 2.0 wrapper for the PocketBase API.
+A .NET Core and Standard 2.0 wrapper for the PocketBase API.
 
 ## Installation
 
