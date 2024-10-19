@@ -21,9 +21,9 @@ var client = new PocketBaseClient("https://your-pocketbase-url");
 var authResponse = await client.AuthenticateAsync("your-identity", "your-password");
 ```
 
-### Creating and Deleting Records
+### Creating Records
 
-To create and delete a record using a custom POCO class:
+To create a record using a custom POCO class:
 
 ```csharp
 var company = new Company
@@ -34,9 +34,6 @@ var company = new Company
 };
 
 company = await client.CreateRecordAsync<Company>("company", company);
-
-// Delete the record
-await client.DeleteRecordAsync("company", company.Id);
 ```
 
 If you prefer not to use a custom POCO class, you can use `JsonNode` instead:
@@ -50,9 +47,6 @@ var company = new JsonObject
 };
 
 company = await client.CreateRecordAsync<JsonNode>("company", company);
-
-// Delete the record
-await client.DeleteRecordAsync("company", company["id"].ToString());
 ```
 
 ### Updating a Record
@@ -95,7 +89,7 @@ var retrievedCompany = await client.GetRecordAsync<JsonNode>("company", company[
 
 ### Working with Relationships
 
-To create and delete records with relationships:
+To create records with relationships:
 
 ```csharp
 // Create a company
@@ -117,10 +111,6 @@ var employee = new Employee
 };
 
 employee = await client.CreateRecordAsync<Employee>("employee", employee, expand: "company");
-
-// Delete the records
-await client.DeleteRecordAsync("employee", employee.Id);
-await client.DeleteRecordAsync("company", company.Id);
 ```
 
 Or using `JsonNode` for both:
@@ -145,10 +135,6 @@ var employee = new JsonObject
 };
 
 employee = await client.CreateRecordAsync<JsonNode>("employee", employee, expand: "company");
-
-// Delete the records
-await client.DeleteRecordAsync("employee", employee["id"].ToString());
-await client.DeleteRecordAsync("company", company["id"].ToString());
 ```
 
 ### Filtering and Sorting
@@ -167,7 +153,28 @@ var companiesSorted = await client.GetRecordsAsync<JsonNode>("company", fields: 
 var companiesFiltered = await client.GetRecordsAsync<JsonNode>("company", filter: "(name = 'Company 5')");
 ```
 
+### Deleting Records
+
+To delete records, use the following code:
+
+```csharp
+// Delete a company
+await client.DeleteRecordAsync("company", company.Id);
+
+// Delete an employee
+await client.DeleteRecordAsync("employee", employee.Id);
+```
+
+If using `JsonNode`:
+
+```csharp
+// Delete a company
+await client.DeleteRecordAsync("company", company["id"].ToString());
+
+// Delete an employee
+await client.DeleteRecordAsync("employee", employee["id"].ToString());
+```
+
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
-
+This project is licensed under the MIT License.
