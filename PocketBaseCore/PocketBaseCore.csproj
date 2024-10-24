@@ -4,7 +4,7 @@
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>disable</Nullable>
         <PackageId>PocketBaseCore</PackageId>
-        <Version>1.0.0</Version>
+        <Version>1.0.1</Version>
         <Authors>Giorgio Minardi</Authors>
         <Summary>Simple .NET Core and Standard 2.0 wrapper for the PocketBase API.</Summary>
         <Description>Simple .NET Core and Standard 2.0 wrapper for the PocketBase API.</Description>

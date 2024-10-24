@@ -7,7 +7,7 @@ A .NET Core and Standard 2.0 wrapper for the PocketBase API.
 Install the package via NuGet:
 
 ```sh
-dotnet add package PocketBaseCore --version 1.0.0
+dotnet add package PocketBaseCore
 ```
 
 ## Usage
@@ -19,6 +19,9 @@ Before making any requests, authenticate with the API:
 ```csharp
 var client = new PocketBaseClient("https://your-pocketbase-url");
 var authResponse = await client.AuthenticateAsync("your-identity", "your-password");
+
+// or you can pass a custom entity (inheriting from PocketBaseUser) if there are custom fields in the User table (ie: name, avatar, etc)
+var authResponse = await client.AuthenticateAsync<MyPocketUser>("your-identity", "your-password");
 ```
 
 ### Creating Records
