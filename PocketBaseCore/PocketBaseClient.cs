@@ -35,12 +35,12 @@ namespace PocketBaseCore
 
         public string AuthToken { get; private set; }
 
-        public async Task<AuthResponse> AuthenticateAsync(string identity, string password, string expand = null, string fields = null)
+        public async Task<AuthResponse<PocketBaseUser>> AuthenticateAsync(string identity, string password, string expand = null, string fields = null)
         {
-            return await AuthenticateAsync<AuthResponse>(identity, password, expand, fields);
+            return await AuthenticateAsync<PocketBaseUser>(identity, password, expand, fields);
         }
 
-        public async Task<T> AuthenticateAsync<T>(string identity, string password, string expand = null, string fields = null) where T : AuthResponse
+        public async Task<AuthResponse<T>> AuthenticateAsync<T>(string identity, string password, string expand = null, string fields = null) where T : PocketBaseUser
         {
             var content = new { identity, password };
             var uri = BuildUri("/api/collections/users/auth-with-password", expand, fields);
@@ -50,7 +50,7 @@ namespace PocketBaseCore
                 Content = new StringContent(JsonSerializer.Serialize(content, _jsonOptions), Encoding.UTF8, "application/json")
             });
 
-            var authResponse = JsonSerializer.Deserialize<T>(await response.Content.ReadAsStringAsync(), _jsonOptions);
+            var authResponse = JsonSerializer.Deserialize<AuthResponse<T>>(await response.Content.ReadAsStringAsync(), _jsonOptions);
             AuthToken = authResponse.Token;
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", AuthToken);
             return authResponse;

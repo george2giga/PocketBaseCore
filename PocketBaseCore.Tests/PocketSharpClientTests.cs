@@ -41,6 +41,26 @@ public class PocketBaseSharpClientTests
     }
     
     [Fact]
+    public async Task AuthenticateAsync_With_Custom_UserClass__Should_Return_Valid_Response()
+    {
+        // Arrange
+        var identity = _configuration["PocketBaseIdentity"];
+        var password = _configuration["PocketBasePassword"];
+        
+        // Act
+        var authResponse = await _client.AuthenticateAsync<PocketBaseUserExtended>(identity, password);
+        
+        // Assert
+        Assert.NotNull(authResponse);
+        Assert.NotNull(authResponse.Token);
+        Assert.NotNull(authResponse.User);
+        Assert.NotEmpty(authResponse.User.Name);
+        Assert.NotEmpty(authResponse.User.Avatar);
+    }
+    
+    
+    
+    [Fact]
     public async Task AuthenticateAsync_Should_Return_ThrowException_On_Invalid_Credentials()
     {
         // Arrange
@@ -48,7 +68,7 @@ public class PocketBaseSharpClientTests
         var password = "wrongPassword";
         
         // Act, Assert
-        AuthResponse authResponse = null;
+        AuthResponse<PocketBaseUser> authResponse = null;
         PocketSharpException exception = await Assert.ThrowsAsync<PocketSharpException>(async () =>
         {
             authResponse = await _client.AuthenticateAsync(identity, password);
@@ -208,7 +228,7 @@ public class PocketBaseSharpClientTests
         }
     }
     
-    private async Task<AuthResponse> Authenticate()
+    private async Task<AuthResponse<PocketBaseUser>> Authenticate()
     {
         var identity = _configuration["PocketBaseIdentity"];
         var password = _configuration["PocketBasePassword"];
@@ -216,6 +236,13 @@ public class PocketBaseSharpClientTests
         return await _client.AuthenticateAsync(identity, password);
     }
 }
+
+public class PocketBaseUserExtended : PocketBaseUser
+{
+    public string Name { get; set; }
+    public string Avatar { get; set; }
+}
+
 
 public class Employee : PocketBaseRecord
 {

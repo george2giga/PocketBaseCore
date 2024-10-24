@@ -2,12 +2,12 @@
 
 namespace PocketBaseCore
 {
-    public class AuthResponse 
+    public class AuthResponse<T> where T : PocketBaseUser
     {
         [JsonPropertyName("token")]
         public string Token { get; set; }
         
         [JsonPropertyName("record")]
-        public PocketBaseUser User { get; set; }
+        public T User { get; set; }
     }
 }

@@ -23,18 +23,18 @@ namespace PocketBaseCore
         /// <param name="expand">Auto expand record relations. Ex: "relField1,relField2.subRelField"</param>
         /// <param name="fields">Comma separated string of the fields to return in the JSON (default returns all values). Ex: "*,record.expand.relField.name" </param>
         /// <returns>Returns new auth token and account data by a combination of username/email and password.</returns>
-        Task<AuthResponse> AuthenticateAsync(string identity, string password, string expand = null, string fields = null);
+        Task<AuthResponse<PocketBaseUser>> AuthenticateAsync(string identity, string password, string expand = null, string fields = null);
 
         /// <summary>
         /// Authenticate user and returns new auth token and account data by a combination of username/email and password.
         /// </summary>
+        /// <typeparam name="T">The type of the user record, which must inherit from PocketBaseUser.</typeparam>
         /// <param name="identity">The username or email of the record to authenticate.</param>
         /// <param name="password">The auth record password.</param>
         /// <param name="expand">Auto expand record relations. Ex: "relField1,relField2.subRelField"</param>
         /// <param name="fields">Comma separated string of the fields to return in the JSON (default returns all values). Ex: "*,record.expand.relField.name"</param>
-        /// <typeparam name="T">The type of the authentication response.</typeparam>
         /// <returns>Returns new auth token and account data by a combination of username/email and password.</returns>
-        Task<T> AuthenticateAsync<T>(string identity, string password, string expand = null, string fields = null) where T : AuthResponse;
+        Task<AuthResponse<T>> AuthenticateAsync<T>(string identity, string password, string expand = null, string fields = null) where T : PocketBaseUser;
 
         /// <summary>
         /// Creates a new record in the specified collection.
