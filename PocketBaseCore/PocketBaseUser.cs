@@ -12,5 +12,9 @@ namespace PocketBaseCore
         public bool Verified { get; set; }
         [JsonPropertyName("emailVisibility")]
         public bool EmailVisibility { get; set; }
+        [JsonPropertyName("name")]
+        public bool Name { get; set; }
+        [JsonPropertyName("avatar")]
+        public bool Avatar { get; set; }
     }
 }
