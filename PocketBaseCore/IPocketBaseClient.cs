@@ -23,7 +23,7 @@ namespace PocketBaseCore
         /// <param name="expand">Auto expand record relations. Ex: "relField1,relField2.subRelField"</param>
         /// <param name="fields">Comma separated string of the fields to return in the JSON (default returns all values). Ex: "*,record.expand.relField.name" </param>
         /// <returns>Returns new auth token and account data by a combination of username/email and password.</returns>
-        Task<AuthResponse<PocketBaseUser>> AuthenticateAsync(string identity, string password, string expand = null, string fields = null);
+        Task<AuthResponse<PocketBaseUser>> AuthenticateAsync(string identity, string password, string expand = null, string fields = null, string collection = "users");
 
         /// <summary>
         /// Authenticate user and returns new auth token and account data by a combination of username/email and password.
@@ -34,7 +34,7 @@ namespace PocketBaseCore
         /// <param name="expand">Auto expand record relations. Ex: "relField1,relField2.subRelField"</param>
         /// <param name="fields">Comma separated string of the fields to return in the JSON (default returns all values). Ex: "*,record.expand.relField.name"</param>
         /// <returns>Returns new auth token and account data by a combination of username/email and password.</returns>
-        Task<AuthResponse<T>> AuthenticateAsync<T>(string identity, string password, string expand = null, string fields = null) where T : PocketBaseUser;
+        Task<AuthResponse<T>> AuthenticateAsync<T>(string identity, string password, string expand = null, string fields = null, string collection = "users") where T : PocketBaseUser;
 
         /// <summary>
         /// Creates a new record in the specified collection.

@@ -35,15 +35,15 @@ namespace PocketBaseCore
 
         public string AuthToken { get; private set; }
 
-        public async Task<AuthResponse<PocketBaseUser>> AuthenticateAsync(string identity, string password, string expand = null, string fields = null)
+        public async Task<AuthResponse<PocketBaseUser>> AuthenticateAsync(string identity, string password, string expand = null, string fields = null, string collection = "users")
         {
             return await AuthenticateAsync<PocketBaseUser>(identity, password, expand, fields);
         }
 
-        public async Task<AuthResponse<T>> AuthenticateAsync<T>(string identity, string password, string expand = null, string fields = null) where T : PocketBaseUser
+        public async Task<AuthResponse<T>> AuthenticateAsync<T>(string identity, string password, string expand = null, string fields = null, string collection = "users") where T : PocketBaseUser
         {
             var content = new { identity, password };
-            var uri = BuildUri("/api/collections/users/auth-with-password", expand, fields);
+            var uri = BuildUri($"/api/collections/{collection}/auth-with-password", expand, fields);
 
             var response = await SendAsync(new HttpRequestMessage(HttpMethod.Post, uri)
             {
