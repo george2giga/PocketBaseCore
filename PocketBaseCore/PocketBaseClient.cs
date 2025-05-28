@@ -37,7 +37,7 @@ namespace PocketBaseCore
 
         public async Task<AuthResponse<PocketBaseUser>> AuthenticateAsync(string identity, string password, string expand = null, string fields = null, string collection = "users")
         {
-            return await AuthenticateAsync<PocketBaseUser>(identity, password, expand, fields);
+            return await AuthenticateAsync<PocketBaseUser>(identity, password, expand, fields, collection);
         }
 
         public async Task<AuthResponse<T>> AuthenticateAsync<T>(string identity, string password, string expand = null, string fields = null, string collection = "users") where T : PocketBaseUser
